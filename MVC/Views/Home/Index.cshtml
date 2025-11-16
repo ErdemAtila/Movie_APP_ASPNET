@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Groups MVC Application</h1>
+    <p class="lead">Manage your groups with ease using our simple and intuitive interface.</p>
+    
+    <div class="mt-4">
+        <a class="btn btn-primary btn-lg" asp-controller="Groups" asp-action="Index">
+            <i class="fas fa-users"></i> View Groups
+        </a>
+        <a class="btn btn-success btn-lg ms-2" asp-controller="Groups" asp-action="Create">
+            <i class="fas fa-plus"></i> Create New Group
+        </a>
+    </div>
+    
+    <div class="mt-5">
+        <h3>Features</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Groups</h5>
+                        <p class="card-text">Add new groups with names and descriptions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Groups</h5>
+                        <p class="card-text">Update existing group information easily.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Delete Groups</h5>
+                        <p class="card-text">Remove groups when they are no longer needed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
