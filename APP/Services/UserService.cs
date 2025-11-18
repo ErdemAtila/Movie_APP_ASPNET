@@ -20,6 +20,7 @@ namespace APP.Services
                 .Include(u => u.Group)
                 .Select(u => new UserResponse
                 {
+                    // assigning entity properties to the response
                     Guid = u.Guid,
                     Id = u.Id,
                     UserName = u.UserName,
@@ -31,6 +32,13 @@ namespace APP.Services
                     Score = u.Score,
                     IsActive = u.IsActive,
                     Address = u.Address,
+
+                    // assigning custom or formatted properties to the response
+                    // If User entity's BirthDate value is not null, convert and assign the value with month/day/year format, otherwise assign "".
+                    BirthDateF = u.BirthDate.HasValue ? u.BirthDate.Value.ToString("MM/dd/yyyy") : string.Empty,
+                    // If User entity's RegistrationDate value is not null, convert and assign the value with month/day/year format, otherwise assign "".
+                    RegistrationDateF = u.RegistrationDate.ToString("MM/dd/yyyy"),
+
                     GroupName = u.Group != null ? u.Group.Name : ""
                 }).ToList();
         }
@@ -46,6 +54,7 @@ namespace APP.Services
 
             return new UserResponse
             {
+                // assigning entity properties to the response
                 Guid = entity.Guid,
                 Id = entity.Id,
                 UserName = entity.UserName,
@@ -57,6 +66,13 @@ namespace APP.Services
                 Score = entity.Score,
                 IsActive = entity.IsActive,
                 Address = entity.Address,
+
+                // assigning custom or formatted properties to the response
+                // If User entity's BirthDate value is not null, convert and assign the value with month/day/year format, otherwise assign "".
+                BirthDateF = entity.BirthDate.HasValue ? entity.BirthDate.Value.ToShortDateString() : string.Empty,
+                // If User entity's RegistrationDate value is not null, convert and assign the value with month/day/year format, otherwise assign "".
+                RegistrationDateF = entity.RegistrationDate.ToShortDateString(),
+
                 GroupName = entity.Group != null ? entity.Group.Name : ""
             };
         }

@@ -21,8 +21,16 @@ namespace APP.Models
         [DisplayName("Birth Date")]
         public DateTime? BirthDate { get; set; }
 
+        // assigning custom or formatted properties to the response
+        [DisplayName("Birth Date")]
+        public string BirthDateF { get; set; }
+
         [DisplayName("Registration Date")]
         public DateTime RegistrationDate { get; set; }
+
+        // assigning custom or formatted properties to the response
+        [DisplayName("Registration Date")]
+        public string RegistrationDateF { get; set; }
 
         public decimal Score { get; set; }
 

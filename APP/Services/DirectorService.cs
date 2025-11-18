@@ -18,6 +18,7 @@ namespace APP.Services
         protected override IQueryable<Director> Query(bool isNoTracking = true)
         {
             return base.Query(isNoTracking) // will return Directors DbSet
+                .Include(d => d.Movies)
                 .OrderBy(d => d.LastName) // query will be ordered ascending by LastName values
                 .ThenBy(d => d.FirstName); // after LastName ordering, query will be ordered ascending by FirstName values
 
@@ -115,6 +116,11 @@ namespace APP.Services
             var entity = Query(false).SingleOrDefault(d => d.Id == id); // isNoTracking is false for being tracked by EF Core to delete the entity
             if (entity is null)
                 return Error("Director not found!");
+
+            // Way 2: recommended
+            if (entity.Movies.Count > 0) // if (entity.Movies.Any())
+                return Error("Director can't be deleted because it has relational movies!");
+
             // delete the Director entity
             Delete(entity); // will delete the entity from the Directors DbSet and since save default parameter's value is true, will save changes to the database
             return Success("Director deleted successfully.", entity.Id);

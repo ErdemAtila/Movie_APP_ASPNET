@@ -22,11 +22,19 @@ namespace APP.Services
                     .ThenInclude(mg => mg.Genre)
                 .Select(m => new MovieResponse
                 {
+                    // assigning entity properties to the response
                     Guid = m.Guid,
                     Id = m.Id,
                     Name = m.Name,
                     ReleaseDate = m.ReleaseDate,
                     TotalRevenue = m.TotalRevenue,
+
+                    // assigning custom or formatted properties to the response
+                    // If Movie entity's ReleaseDate value is not null, convert and assign the value with month/day/year format, otherwise assign "".
+                    ReleaseDateF = m.ReleaseDate.HasValue ? m.ReleaseDate.Value.ToString("MM/dd/yyyy") : string.Empty,
+                    // C: currency format, 2: 2 decimal places
+                    TotalRevenueF = m.TotalRevenue.ToString("C2"),
+
                     DirectorName = m.Director != null ? $"{m.Director.FirstName} {m.Director.LastName}" : "",
                     GenreNames = string.Join(", ", m.MovieGenres.Select(mg => mg.Genre.Name)),
                     GenreIds = m.MovieGenres.Select(mg => mg.GenreId).ToList()
@@ -46,11 +54,19 @@ namespace APP.Services
 
             return new MovieResponse
             {
+                // assigning entity properties to the response
                 Guid = entity.Guid,
                 Id = entity.Id,
                 Name = entity.Name,
                 ReleaseDate = entity.ReleaseDate,
                 TotalRevenue = entity.TotalRevenue,
+
+                // assigning custom or formatted properties to the response
+                // If Movie entity's ReleaseDate value is not null, convert and assign the value with month/day/year format, otherwise assign "".
+                ReleaseDateF = entity.ReleaseDate.HasValue ? entity.ReleaseDate.Value.ToShortDateString() : string.Empty,
+                // C: currency format, 2: 2 decimal places
+                TotalRevenueF = entity.TotalRevenue.ToString("C2"),
+
                 DirectorName = entity.Director != null ? $"{entity.Director.FirstName} {entity.Director.LastName}" : "",
                 GenreNames = string.Join(", ", entity.MovieGenres.Select(mg => mg.Genre.Name)),
                 GenreIds = entity.MovieGenres.Select(mg => mg.GenreId).ToList()

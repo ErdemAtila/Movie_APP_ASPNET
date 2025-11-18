@@ -12,8 +12,16 @@ namespace APP.Models
         [DisplayName("Release Date")]
         public DateTime? ReleaseDate { get; set; }
 
+        // assigning custom or formatted properties to the response
+        [DisplayName("Release Date")]
+        public string ReleaseDateF { get; set; }
+
         [DisplayName("Total Revenue")]
         public decimal TotalRevenue { get; set; }
+
+        // assigning custom or formatted properties to the response
+        [DisplayName("Total Revenue")]
+        public string TotalRevenueF { get; set; }
 
         [DisplayName("Director")]
         public string DirectorName { get; set; }

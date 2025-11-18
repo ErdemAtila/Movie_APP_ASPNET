@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create Movie";
+    var dateTimePickerClass = "datetimepicker"; // "jquery-datetimepicker" must be added as client side library
 }
 
 <div class="container">
@@ -20,7 +21,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="ReleaseDate" class="control-label"></label>
-                <input asp-for="ReleaseDate" class="form-control" type="date" />
+                <div class="input-group">
+                    <input asp-for="ReleaseDate" class="form-control @dateTimePickerClass" type="text" />
+                    <span class="input-group-text" style="cursor: pointer;" onclick="$(this).closest('.input-group').find('input').datetimepicker('show');">
+                        <i class="fas fa-calendar-alt"></i>
+                    </span>
+                </div>
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -61,6 +67,23 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @* Can be uncommented to use client-side validation using jQuery instead of server-side validation. *@
+    @*<partial name="_ValidationScriptsPartial" />*@
+    
+    @* https://xdsoft.net/jqplugins/datetimepicker *@
+    <link href="~/lib/jquery-datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <script src="~/lib/jquery-datetimepicker/jquery.datetimepicker.full.min.js"></script>
+    <script>
+        $(function () {
+            $(".datetimepicker").datetimepicker({
+                // for using only date
+                timepicker: false,
+                format: 'm/d/Y'
+                // for using date with time
+                // timepicker: true,
+                // format: 'm/d/Y H:i'
+            });
+        });
+    </script>
 }
 

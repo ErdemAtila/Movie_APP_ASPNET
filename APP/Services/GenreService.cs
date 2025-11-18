@@ -18,6 +18,7 @@ namespace APP.Services
         protected override IQueryable<Genre> Query(bool isNoTracking = true)
         {
             return base.Query(isNoTracking) // will return Genres DbSet
+                .Include(g => g.MovieGenres)
                 .OrderBy(g => g.Name); // query will be ordered ascending by Name values
 
             // OrderBy, OrderByDescending, ThenBy and ThenByDescending methods can also be used with DbSets.
@@ -104,6 +105,11 @@ namespace APP.Services
             var entity = Query(false).SingleOrDefault(g => g.Id == id); // isNoTracking is false for being tracked by EF Core to delete the entity
             if (entity is null)
                 return Error("Genre not found!");
+
+            // Way 2: recommended
+            if (entity.MovieGenres.Count > 0) // if (entity.MovieGenres.Any())
+                return Error("Genre can't be deleted because it has relational movies!");
+
             // delete the Genre entity
             Delete(entity); // will delete the entity from the Genres DbSet and since save default parameter's value is true, will save changes to the database
             return Success("Genre deleted successfully.", entity.Id);
