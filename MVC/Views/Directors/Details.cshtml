@@ -24,10 +24,29 @@
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IsRetired)
+            @Html.DisplayNameFor(model => model.IsRetiredF)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IsRetired)
+            @Html.DisplayFor(model => model.IsRetiredF)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MovieCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MovieCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MovieNames)
+        </dt>
+        <dd class="col-sm-10">
+            @if (string.IsNullOrWhiteSpace(Model.MovieNames))
+            {
+                <span>-</span>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.MovieNames)
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Guid)

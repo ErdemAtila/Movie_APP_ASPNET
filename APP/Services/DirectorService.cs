@@ -35,7 +35,14 @@ namespace APP.Services
                 Id = d.Id,
                 FirstName = d.FirstName,
                 LastName = d.LastName,
-                IsRetired = d.IsRetired
+                IsRetired = d.IsRetired,
+
+                // assigning custom or formatted properties to the response
+                IsRetiredF = d.IsRetired ? "Yes" : "No",
+                MovieCount = d.Movies.Count,
+                MovieNames = d.Movies.Any()
+                    ? string.Join(", ", d.Movies.Select(m => m.Name))
+                    : string.Empty
             }).ToList();
         }
 
@@ -52,7 +59,14 @@ namespace APP.Services
                 Id = entity.Id,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
-                IsRetired = entity.IsRetired
+                IsRetired = entity.IsRetired,
+
+                // assigning custom or formatted properties to the response
+                IsRetiredF = entity.IsRetired ? "Yes" : "No",
+                MovieCount = entity.Movies.Count,
+                MovieNames = entity.Movies.Any()
+                    ? string.Join(", ", entity.Movies.Select(m => m.Name))
+                    : string.Empty
             };
         }
 

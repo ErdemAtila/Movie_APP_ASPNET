@@ -14,6 +14,16 @@ namespace APP.Models
         [DisplayName("Is Retired")]
         public bool IsRetired { get; set; }
 
+        // assigning custom or formatted properties to the response
+        [DisplayName("Is Retired")]
+        public string IsRetiredF { get; set; }
+
+        [DisplayName("Movie Count")]
+        public int MovieCount { get; set; }
+
+        [DisplayName("Movies")]
+        public string MovieNames { get; set; }
+
         [DisplayName("Full Name")]
         public string FullName => $"{FirstName} {LastName}";
     }

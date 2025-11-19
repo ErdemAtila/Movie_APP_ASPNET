@@ -32,7 +32,10 @@
                         @Html.DisplayNameFor(model => model.FullName)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.IsRetired)
+                        @Html.DisplayNameFor(model => model.MovieCount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsRetiredF)
                     </th>
                     <th></th>
                 </tr>
@@ -45,7 +48,10 @@
                             @Html.DisplayFor(modelItem => item.FullName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IsRetired)
+                            @Html.DisplayFor(modelItem => item.MovieCount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsRetiredF)
                         </td>
                         <td class="text-end w-25">
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
